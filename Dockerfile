@@ -1,5 +1,7 @@
 FROM easypi/alpine-arm
 
+ARG HB_ELKHOST_PRIV_KEY
+
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
     && rm -rf /var/lib/apt/lists/*
