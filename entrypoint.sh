@@ -7,14 +7,14 @@ for FORWARD in ${HOST_FORWARDS//,/ }; do
 done
 
 
-RUN echo "################################################################"
-RUN echo "HOST_NAME     = '$HOST_NAME'"
-RUN echo "HOST_PORT     = '$HOST_PORT'"
-RUN echo "HOST_USER     = '$HOST_USER'"
-RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
-RUN echo "HOST_FORWARDS = '$HOST_FORWARDS'"
-RUN echo "FORWARDS_CMD  = '$FORWARDS_CMD'"
-RUN echo "################################################################"
+echo "################################################################"
+echo "HOST_NAME     = '$HOST_NAME'"
+echo "HOST_PORT     = '$HOST_PORT'"
+echo "HOST_USER     = '$HOST_USER'"
+echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
+echo "HOST_FORWARDS = '$HOST_FORWARDS'"
+echo "FORWARDS_CMD  = '$FORWARDS_CMD'"
+echo "################################################################"
 
 
 
