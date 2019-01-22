@@ -19,8 +19,8 @@ git clone https://github.com/sejnub/docker-autossh.git;
 cd ~/docker-autossh
 
 docker build \
---build-arg HOST_USER=$SEJNUB_ELK_SSH_USER         \
---build-arg HOST_PRIV_KEY=$SEJNUB_ELK_SSH_PRIV_KEY \
+--build-arg HOST_USER="$SEJNUB_ELK_SSH_USER"         \
+--build-arg HOST_PRIV_KEY="$SEJNUB_ELK_SSH_PRIV_KEY" \
 -t sejnub/autossh .
 
 
