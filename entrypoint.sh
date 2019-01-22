@@ -31,4 +31,12 @@ echo "HOST_USER = '$HOST_USER'"
 
 
 
-exec /usr/bin/autossh -i ~/HOST_PRIV_KEY -l $HOST_USER -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -N ${FORWARDS_CMD} ${TUNNEL_SERVER}
+exec /usr/bin/autossh           \
+-i ~/HOST_PRIV_KEY              \
+-l $HOST_USER                   \
+-o ServerAliveInterval=60       \
+-o ServerAliveCountMax=3        \
+-o StrictHostKeyChecking=no     \
+-o UserKnownHostsFile=/dev/null \
+-N ${FORWARDS_CMD}              \
+${TUNNEL_SERVER}

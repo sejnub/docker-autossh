@@ -34,7 +34,9 @@ docker build \
 
 ```bash
 
-docker run sejnub/autossh
+docker rm -f autossh
+docker run --name autossh sejnub/autossh
+
 
 ```
 
