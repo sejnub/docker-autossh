@@ -35,7 +35,7 @@ docker build                                                          \
 ```bash
 
 docker rm -f autossh
-docker run -p 5601:5601 -p 9001:9001 --name autossh-elk-bunjes-net sejnub/autossh
+docker run --restart always -p 5601:5601 -p 9001:9001 --name autossh-elk-bunjes-net sejnub/autossh
 
 
 ```
