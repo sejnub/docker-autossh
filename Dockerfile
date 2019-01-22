@@ -1,7 +1,11 @@
 FROM easypi/alpine-arm
 
+ARG HOST_NAME
+ARG HOST_PORT
 ARG HOST_USER
 ARG HOST_PRIV_KEY
+ARG HOST_FORWARDS
+
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
@@ -14,16 +18,25 @@ ENV AUTOSSH_LOGFILE=/dev/stdout		\
     AUTOSSH_PORT=0			        \
     AUTOSSH_DEBUG=1            		\
     AUTOSSH_LOGLEVEL=1          	\
-    TUNNEL_SERVER=elk.bunjes.net	\
-    FORWARDS=*:5601:127.0.0.1:5601,*:9001:0.0.0.0:9001
+    HOST_NAME=$HOST_NAME            \
+    HOST_PORT=$HOST_PORT            \
+    HOST_USER=$HOST_USER            \
+    HOST_PRIV_KEY=$HOST_PRIV_KEY    \
+    HOST_FORWARDS=$HOST_FORWARDS
 
+echo "################################################################"
+echo "HOST_NAME     = '$HOST_NAME'"
+echo "HOST_PORT     = '$HOST_PORT'"
+echo "HOST_USER     = '$HOST_USER'"
+echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
+echo "HOST_FORWARDS = '$HOST_FORWARDS'"
+echo "################################################################"
+
+# What is this for?
 RUN mkdir /root/.ssh
-VOLUME /root/.ssh 
+VOLUME /root/.ssh
 
 # HB
-RUN echo "HOST_USER = '$HOST_USER'"
-RUN echo "$HOST_USER" > ~/HOST_USER
-
 RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
 RUN echo "$HOST_PRIV_KEY" > ~/HOST_PRIV_KEY
 RUN chmod 0600 ~/HOST_PRIV_KEY

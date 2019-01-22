@@ -11,9 +11,6 @@
 
 . /usr/local/etc/sejnub-credentials.env
 
-echo "SEJNUB_ELK_SSH_USER=$SEJNUB_ELK_SSH_USER"
-echo "SEJNUB_ELK_SSH_PRIV_KEY=$SEJNUB_ELK_SSH_PRIV_KEY"
-
 cd ~;
 rm -rf docker-autossh;
 
@@ -23,6 +20,9 @@ git clone https://github.com/sejnub/docker-autossh.git;
 cd ~/docker-autossh
 
 docker build \
+--build-arg HOST_NAME=elk.bunjes.net
+--build-arg HOST_PORT=443
+--build-arg HOST_FORWARDS=*:5601:127.0.0.1:5601,*:9001:0.0.0.0:9001
 --build-arg HOST_USER="$SEJNUB_ELK_SSH_USER"         \
 --build-arg HOST_PRIV_KEY="$SEJNUB_ELK_SSH_PRIV_KEY" \
 -t sejnub/autossh .
