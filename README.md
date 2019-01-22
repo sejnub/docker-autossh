@@ -23,6 +23,7 @@ cd ~/docker-autossh
 # 4: elk host -> elk container
 # docker-compose.yml
 # "514:5514/udp"   syslog   -> logstash
+# "515:5515"       syslog   -> logstash
 # "5000:5000"      other    -> logstash
 # "5001:5001/udp"  logspout -> logstash
 # "5601:5601"      kibana
@@ -30,26 +31,23 @@ cd ~/docker-autossh
 # "9200:9200"      data     -> elasticsearch
 
 
-# 3: elk host -> elk host
-#############################
-# TODO: UDP to TCP bridging #
-#############################
-#
-# - https://github.com/Konstanty/udp-tcp-bridge
-# - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
-#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 514
-#
-# - wait for first command to return (when multiple active udp tcp brdges)
-#   - https://docs.docker.com/config/containers/multi-service_container/
+# 3: rpi container -> elk host
+HOST_FORWARDS=""
+HOST_FORWARDS+="*:514:127.0.0.1:514"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:515:127.0.0.1:515"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:5000:127.0.0.1:5000"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:5601:127.0.0.1:5601"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:9000:127.0.0.1:9000"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:9001:127.0.0.1:9001"
+HOST_FORWARDS+=","
+HOST_FORWARDS+="*:9200:127.0.0.1:9200"
 
-
-# 2: rpi container -> elk host
-HOST_FORWARDS="" +
-"*:5000:127.0.0.1:5000," +
-"*:5601:127.0.0.1:5601," +
-"*:9000:127.0.0.1:9000," +
-"*:9001:127.0.0.1:9001", +
-"*:9200:127.0.0.1:9200"
+echo "HOST_FORWARDS = '$HOST_FORWARDS'"
 
 docker build                                         \
 --build-arg HOST_NAME="elk.bunjes.net"               \
@@ -66,9 +64,11 @@ docker build                                         \
 
 ```bash
 
-# 1: rpi host -> rpi container
+# 2: rpi host -> rpi container
 docker rm -f autossh-elk-bunjes-net
 docker run         \
+  -p 514:514       \
+  -p 515:515       \
   -p 5000:5000     \
   -p 5601:5601     \
   -p 9001:9001     \
@@ -79,6 +79,19 @@ docker run         \
 
 
 ```
+
+# 1: rpi host -> rpi host
+#############################
+# TODO: UDP to TCP bridging #
+#############################
+#
+# - https://github.com/Konstanty/udp-tcp-bridge
+# - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
+#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 515
+#
+# - wait for first command to return (when multiple active udp tcp brdges)
+#   - https://docs.docker.com/config/containers/multi-service_container/
+
 
 ## Test
 
