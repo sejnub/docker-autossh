@@ -4,10 +4,14 @@
 
 ```bash
 
+
+. /usr/local/etc/sejnub-credentials.env
+
 HB_ELKHOST_DEFAULT_USER=hebunjes
-HB_ELKHOST_DEFAULT_PASS=!!!
 HB_ELKHOST_PRIV_KEY=klaus
 
+echo "SEJNUB_ELK_SSH_PRIV_KEY=$SEJNUB_ELK_SSH_USER_PRIV_KEY"
+echo "SEJNUB_ELK_SSH_USER=$SEJNUB_ELK_SSH_USER"
 
 cd ~;
 rm -rf docker-autossh;
@@ -34,9 +38,7 @@ docker run sejnub/autossh
 
 ```
 
-
 ## Test
-
 
 ```bash
 
