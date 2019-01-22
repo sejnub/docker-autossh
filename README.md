@@ -92,6 +92,7 @@ docker run         \
 #     - Not working  
 #   - sudo socat -v UDP-LISTEN:514,fork TCP:localhost:515
 #     - seems to work
+#     - For a container: <https://github.com/zepptron/rpi-socat/blob/master/Dockerfile>
 #
 # - wait for first command to return (when multiple active udp tcp brdges)
 #   - https://docs.docker.com/config/containers/multi-service_container/
