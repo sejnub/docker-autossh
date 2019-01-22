@@ -80,7 +80,8 @@ docker run         \
 
 ```
 
-# 1: rpi host -> rpi host
+# 1: rpi host UDP -> rpi host TCP
+#
 #############################
 # TODO: UDP to TCP bridging #
 #############################
@@ -107,8 +108,10 @@ ssh -N -L *:5601:127.0.0.1:5601 -L *:9001:0.0.0.0:9001 -l hebunjes elk.bunjes.ne
 # UDP
 echo "<14>Test11 UDP sejnub" | nc -v -u -w 0 localhost 514
 
+
+
 # TCP
-echo "<14>Test12 TCP sejnub" | nc -v -u -w 0 localhost 515
+echo "<14>Test12 TCP sejnub" | nc -v -w 0 localhost 515
 
 
 
