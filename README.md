@@ -67,7 +67,7 @@ docker build                                         \
 ```bash
 
 # 1: rpi host -> rpi container
-docker rm -f autossh
+docker rm -f autossh-elk-bunjes-net
 docker run         \
   -p 5000:5000     \
   -p 5601:5601     \
