@@ -1,7 +1,7 @@
 FROM easypi/alpine-arm
 
 ARG HOST_PRIV_KEY
-ARG HOST_DEFAULT_USER
+ARG HOST_USER
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
@@ -21,6 +21,7 @@ RUN mkdir /root/.ssh
 VOLUME /root/.ssh 
 
 # HB
+RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
 RUN echo "$HOST_PRIV_KEY" > ~/keyfile
 RUN chmod 0600 ~/keyfile
 

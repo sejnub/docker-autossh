@@ -24,8 +24,8 @@ done
 echo "FORWARDS_CMD = '${FORWARDS_CMD}'"
 echo
 echo "Keyfile has content:"
-cat ~/test-keyfile
+cat ~/keyfile
 echo
-echo "HOST_DEFAULT_USER = '$HOST_DEFAULT_USER'"
+echo "HOST_USER = '$HOST_USER'"
 
 exec /usr/bin/autossh -i ~/keyfile -l $HOST_DEFAULT_USER -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -N ${FORWARDS_CMD} ${TUNNEL_SERVER}
