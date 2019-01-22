@@ -35,12 +35,22 @@ docker build \
 ```bash
 
 docker rm -f autossh
-docker run --name autossh sejnub/autossh
+docker run -p 5601:5601 -p 9001:9001 --name autossh sejnub/autossh
 
 
 ```
 
 ## Test
+
+
+```bash
+
+ssh -N -L *:5601:127.0.0.1:5601 -L *:9001:0.0.0.0:9001 -l hebunjes elk.bunjes.net
+
+
+```
+
+
 
 ```bash
 
