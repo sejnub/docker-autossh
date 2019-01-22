@@ -6,7 +6,6 @@ ARG HOST_USER
 ARG HOST_PRIV_KEY
 ARG HOST_FORWARDS
 
-
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
     && rm -rf /var/lib/apt/lists/*
