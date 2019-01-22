@@ -87,7 +87,7 @@ docker run         \
 #
 # - https://github.com/Konstanty/udp-tcp-bridge
 # - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
-#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 515
+#   - sudo nc -v -u -l -p 514 | nc -v 127.0.0.1 515
 #
 # - wait for first command to return (when multiple active udp tcp brdges)
 #   - https://docs.docker.com/config/containers/multi-service_container/
