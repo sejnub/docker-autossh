@@ -89,6 +89,9 @@ docker run         \
 # - https://github.com/Konstanty/udp-tcp-bridge
 # - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
 #   - sudo nc -v -u -l -p 514 | nc -v 127.0.0.1 515
+#     - Not working  
+#   - sudo socat -v UDP-LISTEN:514,fork TCP:localhost:515
+#     - seems to work
 #
 # - wait for first command to return (when multiple active udp tcp brdges)
 #   - https://docs.docker.com/config/containers/multi-service_container/
@@ -106,12 +109,12 @@ ssh -N -L *:5601:127.0.0.1:5601 -L *:9001:0.0.0.0:9001 -l hebunjes elk.bunjes.ne
 # Fake syslog
 
 # UDP
-echo "<14>Test11 UDP sejnub" | nc -v -u -w 0 localhost 514
+echo "<14>Test14 UDP sejnub" | nc -v -u -w 0 localhost 514
 
 
 
 # TCP
-echo "<14>Test12 TCP sejnub" | nc -v -w 0 localhost 515
+echo "<14>Test15 TCP sejnub" | nc -v -w 0 localhost 515
 
 
 
