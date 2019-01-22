@@ -1,6 +1,6 @@
 FROM easypi/alpine-arm
 
-ARG HB_ELKHOST_PRIV_KEY
+ARG HOST_PRIV_KEY
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
@@ -20,7 +20,8 @@ RUN mkdir /root/.ssh
 VOLUME /root/.ssh 
 
 # HB
-RUN echo "$HB_ELKHOST_PRIV_KEY" > ~/test-keyfile
+RUN echo "$HOST_PRIV_KEY" > ~/keyfile
+RUN chmod 0600 ~/keyfile
 
 ADD entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
