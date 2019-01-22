@@ -6,6 +6,19 @@ for FORWARD in ${HOST_FORWARDS//,/ }; do
     FORWARDS_CMD="${FORWARDS_CMD} -L ${FORWARD}"
 done
 
+
+RUN echo "################################################################"
+RUN echo "HOST_NAME     = '$HOST_NAME'"
+RUN echo "HOST_PORT     = '$HOST_PORT'"
+RUN echo "HOST_USER     = '$HOST_USER'"
+RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
+RUN echo "HOST_FORWARDS = '$HOST_FORWARDS'"
+RUN echo "FORWARDS_CMD  = '$FORWARDS_CMD'"
+RUN echo "################################################################"
+
+
+
+
 exec /usr/bin/autossh             \
   -o ServerAliveInterval=60       \
   -o ServerAliveCountMax=3        \
@@ -17,4 +30,3 @@ exec /usr/bin/autossh             \
   -l $HOST_USER                   \
   -p $HOST_PORT                   \
   ${HOST_NAME}
-  
