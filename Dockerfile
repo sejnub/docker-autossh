@@ -21,9 +21,14 @@ RUN mkdir /root/.ssh
 VOLUME /root/.ssh 
 
 # HB
+
 RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
-RUN echo "$HOST_PRIV_KEY" > ~/keyfile
-RUN chmod 0600 ~/keyfile
+RUN echo "$HOST_PRIV_KEY" > ~/HOST_PRIV_KEY
+RUN chmod 0600 ~/HOST_PRIV_KEY
+
+RUN echo "HOST_USER = '$HOST_USER'"
+RUN echo "$HOST_USER" > ~/HOST_USER
+#RUN chmod 0600 ~/HOST_USER
 
 ADD entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh

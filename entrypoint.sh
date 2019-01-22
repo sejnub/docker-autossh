@@ -27,5 +27,9 @@ echo "Keyfile has content:"
 cat ~/keyfile
 echo
 echo "HOST_USER = '$HOST_USER'"
+echo
+echo "cat HOST_USER = '$(cat ~/HOST_USER)'"
+
+
 
 exec /usr/bin/autossh -i ~/keyfile -l $HOST_DEFAULT_USER -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -N ${FORWARDS_CMD} ${TUNNEL_SERVER}
