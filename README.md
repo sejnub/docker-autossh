@@ -21,25 +21,28 @@ cd ~/docker-autossh
 
 # TODO: https://github.com/Konstanty/udp-tcp-bridge
 # https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
-# nc -v -u -l -p 3333 | nc -v 127.0.0.1 50000
+# nc -v -u -l -p 514 | nc -v 127.0.0.1 514
 
 # wait for first command to return (when multiple active udp tcp brdges)
 # https://docs.docker.com/config/containers/multi-service_container/
 
-
-# "9200:9200"      data     -> elasticsearch
+# 3: elk host -> elk container
+# docker-compose.yml
+# "514:5514/udp"   syslog   -> logstash
 # "5000:5000"      other    -> logstash
 # "5001:5001/udp"  logspout -> logstash
-# "514:5514/udp"   syslog   -> logstash
 # "5601:5601"      kibana
 # "9001:9000"      cerebro
+# "9200:9200"      data     -> elasticsearch
 
+
+# 2: rpi container -> elk host
 HOST_FORWARDS="" +
-"*:9200:0.0.0.0:9200", +
 "*:5000:0.0.0.0:5000," +
 "*:5601:0.0.0.0:5601," +
 "*:9000:0.0.0.0:9000," +
-"*:9001:0.0.0.0:9001"
+"*:9001:0.0.0.0:9001", +
+"*:9200:0.0.0.0:9200"
 
 docker build                                         \
 --build-arg HOST_NAME="elk.bunjes.net"               \
@@ -56,12 +59,14 @@ docker build                                         \
 
 ```bash
 
+# 1: rpi host -> rpi container
 docker rm -f autossh
 docker run         \
+  -p 5000:5000     \
   -p 5601:5601     \
   -p 9001:9001     \
   -p 9002:9000     \
-  -p 9001:9001     \
+  -p 9200:9200     \
   --restart always \
   --name autossh-elk-bunjes-net sejnub/autossh
 
