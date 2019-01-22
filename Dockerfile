@@ -23,13 +23,13 @@ ENV AUTOSSH_LOGFILE=/dev/stdout		\
     HOST_PRIV_KEY=$HOST_PRIV_KEY    \
     HOST_FORWARDS=$HOST_FORWARDS
 
-echo "################################################################"
-echo "HOST_NAME     = '$HOST_NAME'"
-echo "HOST_PORT     = '$HOST_PORT'"
-echo "HOST_USER     = '$HOST_USER'"
-echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
-echo "HOST_FORWARDS = '$HOST_FORWARDS'"
-echo "################################################################"
+RUN echo "################################################################"
+RUN echo "HOST_NAME     = '$HOST_NAME'"
+RUN echo "HOST_PORT     = '$HOST_PORT'"
+RUN echo "HOST_USER     = '$HOST_USER'"
+RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
+RUN echo "HOST_FORWARDS = '$HOST_FORWARDS'"
+RUN echo "################################################################"
 
 # What is this for?
 RUN mkdir /root/.ssh
