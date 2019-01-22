@@ -36,7 +36,6 @@ RUN mkdir /root/.ssh
 VOLUME /root/.ssh
 
 # HB
-RUN echo "HOST_PRIV_KEY = '$HOST_PRIV_KEY'"
 RUN echo "$HOST_PRIV_KEY" > ~/HOST_PRIV_KEY
 RUN chmod 0600 ~/HOST_PRIV_KEY
 
