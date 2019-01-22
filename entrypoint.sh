@@ -20,4 +20,6 @@ do
     FORWARDS_CMD="${FORWARDS_CMD} -L ${FORWARD}"
 done
 
+echo "FORWARDS_CMD = '${FORWARDS_CMD}'"
+
 exec /usr/bin/autossh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -N ${FORWARDS_CMD} ${TUNNEL_SERVER}

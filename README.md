@@ -20,3 +20,11 @@ docker build --build-arg HB_ELKHOST_DEFAULT_USER=$HB_ELKHOST_DEFAULT_USER --buil
 ## Run
 
 docker run sejnub/autossh
+
+## Test
+
+ssh localhost -p 33887 # Should work
+
+ssh localhost -p 33888 # Should work
+
+ssh localhost -p 33889 # Should not work
