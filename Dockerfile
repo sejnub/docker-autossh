@@ -1,6 +1,7 @@
 FROM easypi/alpine-arm
 
 ARG HOST_PRIV_KEY
+ARG HOST_DEFAULT_USER
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && apk add --update autossh \
