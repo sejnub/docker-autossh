@@ -15,7 +15,10 @@ ENV AUTOSSH_LOGFILE=/dev/stdout		\
     FORWARDS=5601:127.0.0.1:5601,9000:127.0.0.1:9000 
 
 RUN mkdir /root/.ssh
-VOLUME /root/.ssh
+VOLUME /root/.ssh 
+
+# HB
+RUN echo "$HB_ELKHOST_PRIV_KEY" > ~/test-keyfile
 
 ADD entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
