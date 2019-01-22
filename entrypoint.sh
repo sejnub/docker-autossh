@@ -23,8 +23,7 @@ done
 
 echo "FORWARDS_CMD = '${FORWARDS_CMD}'"
 echo
-echo "Keyfile has content:"
-cat ~/keyfile
+echo "Keyfile has content: '$(cat ~/HOST_PRIV_KEY)'"
 echo
 HOST_USER="$(cat ~/HOST_USER)"
 echo "cat HOST_USER = '$(cat ~/HOST_USER)'"
