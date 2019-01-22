@@ -10,16 +10,6 @@
 ################################################################################
 
 
-#############################
-# TODO: UDP to TCP bridging #
-#############################
-#
-# - https://github.com/Konstanty/udp-tcp-bridge
-# - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
-#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 514
-#
-# - wait for first command to return (when multiple active udp tcp brdges)
-#   - https://docs.docker.com/config/containers/multi-service_container/
 
 
 . /usr/local/etc/sejnub-credentials.env
@@ -33,7 +23,7 @@ git clone https://github.com/sejnub/docker-autossh.git;
 cd ~/docker-autossh
 
 
-# 3: elk host -> elk container
+# 4: elk host -> elk container
 # docker-compose.yml
 # "514:5514/udp"   syslog   -> logstash
 # "5000:5000"      other    -> logstash
@@ -43,13 +33,26 @@ cd ~/docker-autossh
 # "9200:9200"      data     -> elasticsearch
 
 
+# 3: elk host -> elk host
+#############################
+# TODO: UDP to TCP bridging #
+#############################
+#
+# - https://github.com/Konstanty/udp-tcp-bridge
+# - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
+#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 514
+#
+# - wait for first command to return (when multiple active udp tcp brdges)
+#   - https://docs.docker.com/config/containers/multi-service_container/
+
+
 # 2: rpi container -> elk host
 HOST_FORWARDS="" +
-"*:5000:0.0.0.0:5000," +
-"*:5601:0.0.0.0:5601," +
-"*:9000:0.0.0.0:9000," +
-"*:9001:0.0.0.0:9001", +
-"*:9200:0.0.0.0:9200"
+"*:5000:127.0.0.1:5000," +
+"*:5601:127.0.0.1:5601," +
+"*:9000:127.0.0.1:9000," +
+"*:9001:127.0.0.1:9001", +
+"*:9200:127.0.0.1:9200"
 
 docker build                                         \
 --build-arg HOST_NAME="elk.bunjes.net"               \
