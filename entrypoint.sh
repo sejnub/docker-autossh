@@ -22,4 +22,7 @@ done
 
 echo "FORWARDS_CMD = '${FORWARDS_CMD}'"
 
+echo "Keyfile has content:"
+cat ~/test-keyfile
+echo
 exec /usr/bin/autossh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -N ${FORWARDS_CMD} ${TUNNEL_SERVER}
