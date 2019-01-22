@@ -9,6 +9,19 @@
 ################################################################################
 ################################################################################
 
+
+#############################
+# TODO: UDP to TCP bridging #
+#############################
+#
+# - https://github.com/Konstanty/udp-tcp-bridge
+# - https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
+#   - nc -v -u -l -p 514 | nc -v 127.0.0.1 514
+#
+# - wait for first command to return (when multiple active udp tcp brdges)
+#   - https://docs.docker.com/config/containers/multi-service_container/
+
+
 . /usr/local/etc/sejnub-credentials.env
 
 cd ~;
@@ -19,12 +32,6 @@ git clone https://github.com/sejnub/docker-autossh.git;
 
 cd ~/docker-autossh
 
-# TODO: https://github.com/Konstanty/udp-tcp-bridge
-# https://unix.stackexchange.com/questions/267118/create-udp-to-tcp-bridge-with-socat-netcat-to-relay-control-commands-for-vlc-med
-# nc -v -u -l -p 514 | nc -v 127.0.0.1 514
-
-# wait for first command to return (when multiple active udp tcp brdges)
-# https://docs.docker.com/config/containers/multi-service_container/
 
 # 3: elk host -> elk container
 # docker-compose.yml
