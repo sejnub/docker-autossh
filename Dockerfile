@@ -15,7 +15,7 @@ ENV AUTOSSH_LOGFILE=/dev/stdout		\
     AUTOSSH_DEBUG=1            		\
     AUTOSSH_LOGLEVEL=1          	\
     TUNNEL_SERVER=elk.bunjes.net	\
-    FORWARDS=5601:127.0.0.1:5601,9000:127.0.0.1:9000 
+    FORWARDS=*:5601:127.0.0.1:5601,9000:0.0.0.0:9000 
 
 RUN mkdir /root/.ssh
 VOLUME /root/.ssh 
