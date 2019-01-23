@@ -1,5 +1,8 @@
 # docker-autossh
 
+
+TODO: Reorganize this repo like docker-socat
+
 ## Build
 
 ```bash
@@ -77,6 +80,9 @@ docker run         \
   -p 9200:9200     \
   --restart always \
   --name autossh-elk-bunjes-net sejnub/autossh
+
+
+
 
 
 ```
