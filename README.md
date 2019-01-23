@@ -117,12 +117,12 @@ ssh -N -L *:5601:127.0.0.1:5601 -L *:9001:0.0.0.0:9001 -l hebunjes elk.bunjes.ne
 # Fake syslog
 
 # UDP
-echo "<14>Test14 UDP sejnub" | nc -v -u -w 0 localhost 514
-
-
+echo "<14>UDP localhost       514" | nc -v -u -w 0 localhost       514
+echo "<15>UDP syslog.internal 514" | nc -v -u -w 0 syslog.internal 514
 
 # TCP
-echo "<14>Test15 TCP sejnub" | nc -v -w 0 localhost 515
+echo "<24>TCP localhost       515" | nc -v    -w 0 localhost       515
+echo "<25>TCP syslog.internal 515" | nc -v    -w 0 syslog.internal 515
 
 
 
