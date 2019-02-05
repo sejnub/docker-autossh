@@ -13,49 +13,7 @@ curl https://raw.githubusercontent.com/sejnub/docker-autossh/master/scripts/cold
 
 ## Chain of port translations
 
-### 1: rpi host UDP -> rpi host TCP
-
-### 2: rpi host -> rpi container
-docker rm -f autossh-elk-bunjes-net
-docker run         \
-  -d               \
-  -p 514:514       \
-  -p 515:515       \
-  -p 5000:5000     \
-  -p 5601:5601     \
-  -p 9001:9001     \
-  -p 9002:9000     \
-  -p 9200:9200     \
-  --restart always \
-  --name autossh-elk-bunjes-net sejnub/autossh
-
-### 3: rpi container -> elk host
-
-HOST_FORWARDS=""
-HOST_FORWARDS+="*:514:127.0.0.1:514"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:515:127.0.0.1:515"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:5000:127.0.0.1:5000"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:5601:127.0.0.1:5601"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:9000:127.0.0.1:9000"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:9001:127.0.0.1:9001"
-HOST_FORWARDS+=","
-HOST_FORWARDS+="*:9200:127.0.0.1:9200"
-
-### 4: elk host -> elk container
-
-docker-compose.yml
-"514:5514/udp"   syslog   -> logstash
-"515:5515"       syslog   -> logstash
-"5000:5000"      other    -> logstash
-"5001:5001/udp"  logspout -> logstash
-"5601:5601"      kibana
-"9001:9000"      cerebro
-"9200:9200"      data     -> elasticsearch
+See <https://bitbucket.org/sejnub/setup/src/master/smarthome/ports.txt>
 
 ## doc
 
