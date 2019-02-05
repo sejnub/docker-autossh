@@ -19,4 +19,4 @@ docker run         \
   --name autossh-elk-bunjes-net sejnub/autossh
 
 
-echo "#### run.sh has started."
+echo "#### run.sh has ended."
