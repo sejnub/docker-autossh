@@ -3,7 +3,7 @@
 echo "#### run.sh has started."
 
 
-# 2: rpi host -> rpi container
+# 3: rpi host -> rpi container
 docker rm -f autossh-elk-bunjes-net
 docker run         \
   -d               \
