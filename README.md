@@ -59,5 +59,20 @@ docker-compose.yml
 
 ## doc
 
-- wait for first command to return (when multiple active udp tcp brdges)
-  - https://docs.docker.com/config/containers/multi-service_container/
+### Multiple processes in one container
+
+Stop container if one of the processes has stopped. This might be a solution if I want multiple active udp tcp brdges.
+
+- Exaple from docker
+  - <https://docs.docker.com/config/containers/multi-service_container/>
+
+- Example from some forum
+
+```bash
+#!/bin/bash
+/usr/bin/stunnel4 /stunnel.conf &
+/usr/local/bin/redis-server /etc/redis/redis.conf &
+wait -n
+kill %1 %2
+echo "All process finished"
+```
